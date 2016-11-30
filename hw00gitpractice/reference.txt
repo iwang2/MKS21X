@@ -1,4 +1,5 @@
-clone
-add
-commit
-push
+clone - copying repository to machine
+add - begin tracking a file
+commit - locking in a version
+push - syncing changes to github 
+pull - update repository 
