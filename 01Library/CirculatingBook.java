@@ -21,4 +21,28 @@ public class CirculatingBook extends LibraryBook{
 	dueDate = date;
     }
 
+    public void checkout(String name, String date){
+	setCurrentHolder(name);
+	setDueDate(date);
+    }
+    public void returned(){
+	setCurrentHolder("");
+	setDueDate("");
+    }
+
+    public String circulationStatus(){
+	String status = "";
+	if(getCurrentHolder().compareTo(status) == 0){
+	    status = "book available on shelves";
+	}else{
+	    status = "book has been checked out";
+	}
+	return "current holder: " + getCurrentHolder() + 
+	    "\ndate: " + getDueDate() +
+	    "\nstatus: " + status;
+    }
+
+    public String toString(){
+	if(
+	return super.toString() + 
 }
