@@ -1,11 +1,14 @@
 public class CirculatingBook extends LibraryBook{
     private String currentHolder;
-    private string dueDate;
+    private String dueDate;
+    private boolean circulating;
 
-    public CirculatingBook(String name, String book, String number, String call){
+    public CirculatingBook(String name, String book,
+			   String number, String call){
 	super(name,book,number,call);
 	currentHolder = "";
 	dueDate = "";
+	circulating = false;
     }
 
     public String getCurrentHolder(){
@@ -24,25 +27,28 @@ public class CirculatingBook extends LibraryBook{
     public void checkout(String name, String date){
 	setCurrentHolder(name);
 	setDueDate(date);
+	circulating = true;
     }
     public void returned(){
 	setCurrentHolder("");
 	setDueDate("");
+	circulating = false;
     }
 
     public String circulationStatus(){
-	String status = "";
-	if(getCurrentHolder().compareTo(status) == 0){
-	    status = "book available on shelves";
+	if(circulating){
+	    return "current holder: " + getCurrentHolder() + 
+	    "   date: " + getDueDate();
 	}else{
-	    status = "book has been checked out";
+	    return "checked out";
 	}
-	return "current holder: " + getCurrentHolder() + 
-	    "\ndate: " + getDueDate() +
-	    "\nstatus: " + status;
     }
 
     public String toString(){
-	if(
-	return super.toString() + 
+	String status = "   ";
+	if(circulating){
+	    status += circulationStatus();
+	}
+	return super.toString() + status;
+    }
 }
