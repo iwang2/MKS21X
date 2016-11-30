@@ -11,7 +11,7 @@ public class ReferenceBook extends LibraryBook{
     public String getCollection(){
 	return collection;
     }
-    public void setCollection(house){
+    public void setCollection(String house){
 	collection = house;
     }
 
@@ -26,5 +26,9 @@ public class ReferenceBook extends LibraryBook{
 
     public String circulationStatus(){
 	return "non-circulating reference book";
+    }
+
+    public String toString(){
+	return super.toString() + "  collection: " + getCollection();
     }
 }
