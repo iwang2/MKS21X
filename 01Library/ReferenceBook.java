@@ -15,13 +15,11 @@ public class ReferenceBook extends LibraryBook{
 	collection = house;
     }
 
-    public void checkout(String patron, String due){
+    public void checkout(String name, String due){
 	System.out.println("cannot check out a reference book");
-	throw new NullPointerException();
     }
     public void returned(){
 	System.out.println("reference book could not have been checked out -- return impossible");
-	throw new NullPointerException();
     }
 
     public String circulationStatus(){
