@@ -37,7 +37,7 @@ public class CirculatingBook extends LibraryBook{
 
     public String circulationStatus(){
 	if(circulating){
-	    return "current holder: " + getCurrentHolder() + 
+	    return "  current holder: " + getCurrentHolder() + 
 	    "   date: " + getDueDate();
 	}else{
 	    return "checked out";
