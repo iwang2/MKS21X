@@ -4,19 +4,20 @@ public class SuperArrayIterator implements Iterator<String>{
     SuperArray a;
     int index;
 
-    public SuperArrayIterator(){
+    public SuperArrayIterator(SuperArray a){
 	index = 0;
+	this.a = a;
     }
 
     public boolean hasNext(){
-	return a.length-1 > index
+	return a.size()-1 > index;
     }
-    public SuperArray next(){
+    public String next(){
 	if(hasNext()){
 	    index++;
-	    return a.index;
+	    return a.get(index);
 	}else{
-	    return new NoSuchElementException();
+	    throw new NoSuchElementException();
 	}
     }
     public void remove(){
