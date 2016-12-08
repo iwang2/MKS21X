@@ -1,6 +1,7 @@
 public class Barcode implements Comparable<Barcode>{
     private String zip;
     private int checkDigit;
+    private String total;
 
     /* precondition: zip.length() = 5 and zip contains only digits
        postcondition: throws a runtime excpetion
@@ -19,6 +20,7 @@ public class Barcode implements Comparable<Barcode>{
 	}catch(NumberFormatException e){
 	    throw new IllegalArgumentException();
 	}
+	total = zip + checkDigit;
     }
 
     private int checkDigit(){
@@ -39,31 +41,32 @@ public class Barcode implements Comparable<Barcode>{
 	String numbers = zip + checkDigit;
 	for(int i = 0; i < 6; i++){
 	    if(numbers.charAt(i)=='1'){
-		barcode += :::|| ;
+		barcode += ":::||" ;
 	    }else if(numbers.charAt(i)=='2'){
-		barcode += ::|:| ;
+		barcode += "::|:|" ;
 	    }else if(numbers.charAt(i)=='3'){
-		barcode += ::||: ;
+		barcode += "::||:" ;
 	    }else if(numbers.charAt(i)=='4'){
-		barcode += :|::| ;
+		barcode += ":|::|" ;
 	    }else if(numbers.charAt(i)=='5'){
-		barcode += :|:|: ;
+		barcode += ":|:|:" ;
 	    }else if(numbers.charAt(i)=='6'){
-		barcode += :||:: ;
+		barcode += ":||::" ;
 	    }else if(numbers.charAt(i)=='7'){
-		barcode += |:::| ;
+		barcode += "|:::|" ;
 	    }else if(numbers.charAt(i)=='8'){
-		barcode += |::|: ;
+		barcode += "|::|:" ;
 	    }else if(numbers.charAt(i)=='9'){
-		barcode += |:|:: ;
+		barcode += "|:|::" ;
 	    }else if(numbers.charAt(i)=='0'){
-		barcode += ||::: ;
+		barcode += "||:::" ;
 	    }
 	}
 	return numbers + "  " + barcode;
     }
 
     public int compareTo(Barcode other){
+	return (this.total).compareTo(other.total);
     }
 }
     
