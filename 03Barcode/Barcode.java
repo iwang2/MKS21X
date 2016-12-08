@@ -62,7 +62,7 @@ public class Barcode implements Comparable<Barcode>{
 		barcode += "||:::" ;
 	    }
 	}
-	return numbers + "  " + barcode;
+	return numbers + "  |" + barcode + "|";
     }
 
     public int compareTo(Barcode other){
