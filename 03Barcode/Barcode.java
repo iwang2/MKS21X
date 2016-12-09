@@ -45,6 +45,12 @@ public class Barcode implements Comparable<Barcode>{
     public String toString(){
     }
 
+    public static toCode(String zip){
+	String code;
+	for(int i = 0; i < 5; i++){
+	    code += 
+    }
+    
     public int compareTo(Barcode other){
 	return (this._zip).compareTo(other._zip);
     }
