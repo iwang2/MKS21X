@@ -1,18 +1,6 @@
 public class Barcode implements Comparable<Barcode>{
     private String _zip;
     private int _checkDigit;
-    private String total = _zip + _checkDigit;
-
-    private String[] codelist = {"||:::",  //0
-				 ":::||",  //1
-				 "::|:|",  //2
-				 "::||:",  //3
-				 ":|::|",  //4
-				 ":|:|:",  //5
-				 ":||::",  //6
-				 "|:::|",  //7
-				 "|::|:",  //8
-				 "|:|::"}; //9
     
     /* precondition: zip.length() = 5 and zip contains only digits
        postcondition: throws a runtime excpetion
@@ -26,30 +14,47 @@ public class Barcode implements Comparable<Barcode>{
 	}else{
 	    throw new IllegalArgumentException("invalid length");
 	}
-        try{
-	    _checkDigit = checkDigit();
-	}catch(NumberFormatException e){
-	    throw new IllegalArgumentException("zip must be a String of numbers only");
-	}
-	total = _zip + _checkDigit;
+	_checkDigit = checkDigit(_zip);
     }
 
-    private int checkDigit(){
+    private static int checkDigit(String zip){
 	int sum = 0;
-	for(int i = 0; i < 5; i++){
-	    sum += Integer.parseInt(""+_zip.charAt(i));
+	try{
+	    for(int i = 0; i < 5; i++){
+		sum += Integer.parseInt(""+zip.charAt(i));
+	    }
+	}catch(NumberFormatException e){
+	    throw new IllegalArgumentException("zip must be a String of integers only");
 	}
 	return sum%10;
     }
 
-    public String toString(){
-    }
+    //public String toString(){
+    //}
 
-    public static toCode(String zip){
-	String code;
+    public static String toCode(String zip){
+	if(zip.length() != 5){
+	    throw new IllegalArgumentException("incorrect zip length");
+	}
+        zip += checkDigit(zip);
+	String[] codeList = {"||:::",  //0
+			     ":::||",  //1
+			     "::|:|",  //2
+			     "::||:",  //3
+			     ":|::|",  //4
+			     ":|:|:",  //5
+			     ":||::",  //6
+			     "|:::|",  //7
+			     "|::|:",  //8
+			     "|:|::"}; //9
+	String code = "";
 	for(int i = 0; i < 5; i++){
-	    code += 
+	    code += codeList[Integer.parseInt(""+zip.charAt(i))];
+	}
+	return "|" + code + "|";
     }
+    //public static String toZip(String code){
+    //}
     
     public int compareTo(Barcode other){
 	return (this._zip).compareTo(other._zip);
