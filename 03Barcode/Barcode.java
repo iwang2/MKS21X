@@ -29,8 +29,9 @@ public class Barcode implements Comparable<Barcode>{
 	return sum%10;
     }
 
-    //public String toString(){
-    //}
+    public String toString(){
+	return toCode(_zip);
+    }
 
     public static String toCode(String zip){
 	if(zip.length() != 5){
@@ -53,8 +54,34 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	return "|" + code + "|";
     }
-    //public static String toZip(String code){
-    //}
+    public static String toZip(String code){
+	String zip = "";
+	int counter = 0;
+	code = code.substring(1,code.length()-1);
+	String[] codeList = {"||:::",  //0
+			     ":::||",  //1
+			     "::|:|",  //2
+			     "::||:",  //3
+			     ":|::|",  //4
+			     ":|:|:",  //5
+			     ":||::",  //6
+			     "|:::|",  //7
+			     "|::|:",  //8
+			     "|:|::"}; //9
+	for(int i = 0; i < code.length()/5; i++){
+	    while(zip.length() <= i){
+		if(code.substring(0,5) == codeList[counter]){
+		    zip += counter;
+		    code = code.substring(5);
+		}
+		else counter++;
+		if(counter == 10){
+		    throw new IllegalArgumentException("encoded ints are invalid");
+		}
+	    }
+	}
+	return zip;
+    }
     
     public int compareTo(Barcode other){
 	return (this._zip).compareTo(other._zip);
