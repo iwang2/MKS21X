@@ -20,6 +20,17 @@ public class Sorts{
 	    start++;
 	}
     }
+    public static void insertionSort(int[] data){
+	for(int i = 1; i < data.length; i++){
+	    int value = data[i];
+	    int index = i-1;
+	    while(value < data[index]){
+	        data[index+1] = data[index];
+		index--;
+	    }
+	    data[index] = value;
+	}
+    }
 
     public static String toString(int[] data){
 	String result = "";
@@ -33,5 +44,8 @@ public class Sorts{
 	int[] a = {3,4,77,0,0,13};
 	selectionSort(a);
 	System.out.println(toString(a));
+	int[] b = {3,4,77,0,0,13};
+	insertionSort(b);
+	System.out.println(toString(b));
     }
 }
