@@ -21,14 +21,19 @@ public class Sorts{
 	}
     }
     public static void insertionSort(int[] data){
-	for(int i = 1; i < data.length; i++){
-	    int value = data[i];
-	    int index = i-1;
-	    while(value < data[index]){
-	        data[index+1] = data[index];
+	for(int i = 0; i < data.length-1; i++){
+	    int value = data[i+1];
+	    int index = i;
+	    while(index != 0 && value < data[index]){
+		data[index+1] = data[index];
 		index--;
 	    }
-	    data[index] = value;
+	    if(index == 0 && value < data[index]){
+	        data[1] = data[0];
+		data[0] = value;
+	    }else{
+		data[index+1] = value;
+	    }
 	}
     }
 
@@ -40,12 +45,32 @@ public class Sorts{
 	return "[" + result.substring(2) + "]";
     }
 
+    public static int[] generate(int length){
+	int[] a = new int[length];
+	for(int i = 0; i < length; i++){
+	    a[i] = (int)(Math.random() * 99);
+	}
+	System.out.println(toString(a));
+	return a;
+    }
+
     public static void main(String[]args){
 	int[] a = {3,4,77,0,0,13};
+	System.out.println(toString(a));
 	selectionSort(a);
 	System.out.println(toString(a));
+	
 	int[] b = {3,4,77,0,0,13};
 	insertionSort(b);
 	System.out.println(toString(b));
+
+	int[] c = generate(10);
+	insertionSort(c);
+	System.out.println(toString(c));
+
+	int[] d = {};
+	insertionSort(d);
+	System.out.println(toString(d));
+	
     }
 }
