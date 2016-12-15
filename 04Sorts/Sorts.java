@@ -36,6 +36,23 @@ public class Sorts{
 	    }
 	}
     }
+    public static void bubbleSort(int[] data){
+	int last = data.length-1;
+	int counter = 0;
+	int swap;
+        do{
+	    for(int i = 0; i < last; i++){
+		if(data[i] > data[i+1]){
+		    swap = data[i];
+		    data[i] = data[i+1];
+		    data[i+1] = swap;
+		    counter++;
+		}
+	    }
+	    last--;
+	}
+		    
+    }
 
     public static String toString(int[] data){
 	String result = "";
