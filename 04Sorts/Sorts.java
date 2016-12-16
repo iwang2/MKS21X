@@ -38,9 +38,10 @@ public class Sorts{
     }
     public static void bubbleSort(int[] data){
 	int last = data.length-1;
-	int counter = 0;
+	int counter;
 	int swap;
         do{
+	    counter = 0;
 	    for(int i = 0; i < last; i++){
 		if(data[i] > data[i+1]){
 		    swap = data[i];
@@ -50,8 +51,7 @@ public class Sorts{
 		}
 	    }
 	    last--;
-	}
-		    
+	} while(counter!=0);
     }
 
     public static String toString(int[] data){
@@ -67,11 +67,12 @@ public class Sorts{
 	for(int i = 0; i < length; i++){
 	    a[i] = (int)(Math.random() * 99);
 	}
-	System.out.println(toString(a));
+	//System.out.println(toString(a));
 	return a;
     }
 
     public static void main(String[]args){
+	/*
 	int[] a = {3,4,77,0,0,13};
 	System.out.println(toString(a));
 	selectionSort(a);
@@ -85,9 +86,37 @@ public class Sorts{
 	insertionSort(c);
 	System.out.println(toString(c));
 
-	int[] d = {};
+	int[] d = {2,1};
 	insertionSort(d);
 	System.out.println(toString(d));
-	
+
+	int[] e = generate(10);
+	bubbleSort(e);
+	System.out.println(toString(e));
+	*/
+
+	if(args.length == 0){
+	    System.out.println("[array length] [ 0-selection / 1-insertion / 2-bubble]");
+	}
+	else{	    
+	    long startTime = System.currentTimeMillis();
+	    
+	    int[] a = generate(Integer.parseInt(args[0]));
+	    
+	    if(args[1].equals("0")){
+		selectionSort(a);
+		//System.out.println(toString(a));
+	    }else if(args[1].equals("1")){
+		insertionSort(a);
+		//System.out.println(toString(a));
+	    }else if(args[1].equals("2")){
+		bubbleSort(a);
+		//System.out.println(toString(a));
+	    }
+	    
+	    long endTime = System.currentTimeMillis();
+	    long time = endTime-startTime;
+	    System.out.println("time: " + time);
+	}
     }
 }
