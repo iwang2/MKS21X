@@ -7,7 +7,7 @@ public class Sorts{
     public static void selectionSort(int[] data){
 	int start = 0;
         while(start < data.length-1){
-	    int smallest = data[start];
+	    int smallest = data[start]; //only index necessary
 	    int swap = start;
 	    for(int i = start; i < data.length; i++){
 		if(data[i] < smallest){
@@ -36,9 +36,22 @@ public class Sorts{
 	    }
 	}
     }
+    
+    public static void insertion(int[] data){
+	for(int i = 1; i < data.length; i++){
+	    int old = ary[i];
+	    int index = i;
+	    while(index < 0 && old < data[index-1]){
+		data[index] = data[index-1];
+		index--;
+	    }
+	    data[index] = old;
+	}
+    }
+    
     public static void bubbleSort(int[] data){
 	int last = data.length-1;
-	int counter;
+	int counter; //boolean is easier;
 	int swap;
         do{
 	    counter = 0;
