@@ -9,6 +9,10 @@ public class Temperature{
     }
 
     public static void main(String[]args){
+	System.out.println(CtoF(-40.0)); // -40.0
+	System.out.println(CtoF(100.0)); // 212.0
+	System.out.println(FtoC(212.0)); // 100.0
+	System.out.println(FtoC(32.0)); // 0.0
     }
     
 }
