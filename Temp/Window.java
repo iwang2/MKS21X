@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Window extends JFrame{
+public class Window extends JFrame implements ActionListener{
 
     private Container pane;
 
@@ -20,16 +20,32 @@ public class Window extends JFrame{
 	pane.setLayout(new FlowLayout());
 
 	f = new JButton("F --> C");
+	f.addActionListener(this);
+	f.setActionCommand("toC");
 	c = new JButton("C --> F");
-	l = new JLabel("",null,JLabel.CENTER);
+	c.addActionListener(this);
+	c.setActionCommand("toF");
+	l = new JLabel("Temperature",null,JLabel.CENTER);
 	t = new JTextField(12);
 
 	pane.add(f);
 	pane.add(c);
-	pane.add(l);
 	pane.add(t);
+	pane.add(l);
     }
 
+    public void actionPerformed(ActionEvent e){
+	String event = e.getActionCommand();
+	if(event.equals("toC")){
+	    int s = Integer.parseInt(t.getText());
+	    l.setText("Celsius: " + Temperature.FtoC(s));
+	}
+	if(event.equals("toF")){
+	    int s = Integer.parseInt(t.getText());
+	    l.setText("Fahrenheit: " + Temperature.CtoF(s));
+	}
+    }
+    
     public static void main(String[]args){
 	Window a = new Window();
 	a.setVisible(true);
